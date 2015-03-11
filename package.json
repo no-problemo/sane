@@ -57,8 +57,10 @@
     "yam": "0.0.18"
   },
   "devDependencies": {
+    "babel-eslint": "^2.0.0",
     "chai": "^1.9.1",
     "chai-as-promised": "^4.1.1",
+    "eslint": "^0.16.2",
     "glob": "4.0.5",
     "lodash-node": "^2.4.1",
     "mocha": "^2.0.1",
