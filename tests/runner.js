@@ -17,18 +17,21 @@ var mocha = new Mocha({
   reporter: 'spec'
 });
 
-// var arg = process.argv[2];
-var root = 'tests/{unit,acceptance}';
+// Determine which tests to run based on argument passed to runner
+var arg = process.argv[2];
+if (!arg) {
+  var root = 'tests/{unit,acceptance,lint}';
+} else if (arg === 'lint') {
+  var root = 'tests/lint';
+} else {
+  var root = 'tests/{unit,acceptance}';
+}
 
 function addFiles(mocha, files) {
   glob.sync(root + files).forEach(mocha.addFile.bind(mocha));
 }
 
 addFiles(mocha, '/**/*Test.js');
-
-// if (arg === 'all') {
-//   addFiles(mocha, '/**/*-slow.js');
-// }
 
 mocha.run(function (failures) {
   process.on('exit', function () {
